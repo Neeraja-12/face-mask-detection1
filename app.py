@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, Response, request
 from camera_desktop import Camera
 
@@ -17,4 +18,4 @@ def video_feed():
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', threaded=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), threaded=True)
